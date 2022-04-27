@@ -123,12 +123,9 @@ public class Menu extends JFrame {
 
         System.out.println("Budget: " + budget);
 
-        //Schauen ob alles eingegeben und damit dann das game starten
-        if(budget != 0 && colours[colours.length-1] != null){
-            btStartGame.setEnabled(true);
-        }else{
-            throw new IllegalArgumentException("Set colours and budget");
-        }
+        //Start Game enablen
+        btStartGame.setEnabled(true);
+
 
     }
 
