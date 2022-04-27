@@ -59,12 +59,9 @@ public class Menu extends JFrame {
         btDuration.setBackground(Color.pink);
         btDuration.setFont(new Font("Curier New", Font.PLAIN, 20));
         btDuration.setBorder(BorderFactory.createLineBorder(new Color(142, 13, 18, 255), 3));
-        btDuration.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                duration = setDuration();
-                System.out.println("Duration: " + duration);
-            }
+        btDuration.addActionListener(e -> {
+            duration = setDuration();
+            System.out.println("Duration: " + duration);
         });
 
         btStartGame.setText("  Start Game!  ");
