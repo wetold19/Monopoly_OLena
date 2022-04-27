@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -107,7 +106,6 @@ public class Menu extends JFrame {
     }
 
     public void onDefineAdjustments(ActionEvent e){
-        JOptionPane pane = new JOptionPane();
         //Number of players:
         numberOfPlayers = adjustments.setNumberOfPlayers();
         //choose colours for each player
@@ -135,7 +133,6 @@ public class Menu extends JFrame {
     }
 
     public int setDuration() {
-        JOptionPane pane = new JOptionPane();
         Object[] possibilities = {"30 minutes", "60 minutes", "90 minutes", "120 minutes"};
         String s = (String)JOptionPane.showInputDialog(container, "Choose duration for game:", "Set Duration",
                 JOptionPane.PLAIN_MESSAGE, null, possibilities, "30 minutes");
