@@ -7,12 +7,15 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Menu extends JFrame {
+    Adjustments adjustments = new Adjustments();
+
     Container container = this.getContentPane();
     JLabel laHeadline = new JLabel();
     JButton btInstructions = new JButton();
     JButton btAdjustments = new JButton();
     JButton btDuration = new JButton();
     JButton btStartGame = new JButton();
+
     private String instructions = "";
     String line = "";
     private int numberOfPlayers = 0;
@@ -68,6 +71,7 @@ public class Menu extends JFrame {
         btStartGame.setBackground(Color.pink);
         btStartGame.setFont(new Font("Curier New", Font.PLAIN, 20));
         btStartGame.setBorder(BorderFactory.createLineBorder(new Color(142, 13, 18, 255), 3));
+        btStartGame.addActionListener(e -> onStartGame());
         btStartGame.setEnabled(false);
 
         //Abstände zwischen den Blöcken
@@ -105,18 +109,25 @@ public class Menu extends JFrame {
     public void onDefineAdjustments(ActionEvent e){
         JOptionPane pane = new JOptionPane();
         //Number of players:
-
-        if(numberOfPlayers != 0){
-            //choose colours for each player
-        }else{
-            throw  new IllegalArgumentException("Choose number of players!");
-        }
-        
-
+        numberOfPlayers = adjustments.setNumberOfPlayers();
+        //choose colours for each player
+        colours = adjustments.setColourForCone(numberOfPlayers);
         //choose starting budget (Standart, advances, beginner)
+        budget = adjustments.setBudget();
+        //Ausgabe der Werte
+        System.out.println("Number of Players: " + numberOfPlayers);
+        System.out.println("-------------------------------");
 
-        if(colours != null && budget != 0){
-            btStartGame.enable(true);
+        for (int i = 0; i < colours.length; i++) {
+            System.out.println("Player " + (i+1) + ": " + colours[i]);
+        }
+        System.out.println("-------------------------------");
+
+        System.out.println("Budget: " + budget);
+
+        //Schauen ob alles eingegeben und damit dann das game starten
+        if(budget != 0 && colours[colours.length-1] != null){
+            btStartGame.setEnabled(true);
         }else{
             throw new IllegalArgumentException("Set colours and budget");
         }
@@ -128,10 +139,16 @@ public class Menu extends JFrame {
         Object[] possibilities = {"30 minutes", "60 minutes", "90 minutes", "120 minutes"};
         String s = (String)JOptionPane.showInputDialog(container, "Choose duration for game:", "Set Duration",
                 JOptionPane.PLAIN_MESSAGE, null, possibilities, "30 minutes");
+        if(s != null){
+            String[] minutesArray = s.split(" ");
+            return Integer.parseInt(minutesArray[0]);
+        }
+        return 0;
 
-        String[] minutesArray = s.split(" ");
+    }
 
-        return Integer.parseInt(minutesArray[0]);
+    public void onStartGame(){
+        System.out.println("Start Game!!!");
     }
 
     //Pop Up with heading
