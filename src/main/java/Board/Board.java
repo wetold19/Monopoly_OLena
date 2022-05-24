@@ -1,3 +1,5 @@
+package Board;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -29,7 +31,6 @@ public class Board extends JPanel {
     }
 
     private void initializeSquares() {
-        // TODO Auto-generated method stub
         String[] squareNames = {
                 "Go",
                 "Vienna",

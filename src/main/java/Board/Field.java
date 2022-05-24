@@ -1,3 +1,5 @@
+package Board;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -123,11 +125,11 @@ public class Field extends JPanel {
         JFrame frame = new JFrame();
         frame.setSize(300, 400);
         Field field = new Field(300, 400, frame.getWidth()+60, 350, "Wien", 90);
-        //Field field = new Field(300, 400, 200, 350, "Wien", -90);
-        //Field field = new Field(300, 400, 280, 140, "Wien", 0);
-        //Field field = new Field(400, 300, 280, frame.getHeight()+150, "Wien", 180);
+        //Board.Field field = new Board.Field(300, 400, 200, 350, "Wien", -90);
+        //Board.Field field = new Board.Field(300, 400, 280, 140, "Wien", 0);
+        //Board.Field field = new Board.Field(400, 300, 280, frame.getHeight()+150, "Wien", 180);
 
-        //Field field = new Field();
+        //Board.Field field = new Board.Field();
         field.setPosition(13);
         frame.getContentPane().add(field);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

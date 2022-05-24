@@ -1,3 +1,5 @@
+package Menu;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -51,7 +53,7 @@ public class Menu extends JFrame {
             //Show game insturctions
         btInstructions.addActionListener(e -> onShowInstructions());
 
-        btAdjustments.setText("  Adjustments  ");
+        btAdjustments.setText("  Menu.Menu.Adjustments  ");
         btAdjustments.setBackground(Color.pink);
         btAdjustments.setFont(new Font("Curier New", Font.PLAIN, 20));
         btAdjustments.setBorder(BorderFactory.createLineBorder(new Color(142, 13, 18, 255), 3));
