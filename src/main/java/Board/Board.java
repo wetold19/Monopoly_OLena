@@ -248,6 +248,7 @@ public class Board extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.setResizable(false);
         board.printSquares();
         System.out.println(board.getSquareAtIndex(0).getName());
     }
