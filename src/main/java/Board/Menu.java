@@ -1,4 +1,4 @@
-package Menu;
+package Board;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,7 +40,7 @@ public class Menu extends JFrame {
         container.setLayout(new BorderLayout());
 
         //Create JLabel
-        laHeadline.setText("Menu");
+        laHeadline.setText("Board/Menu");
         laHeadline.setFont(new Font("Curier New", Font.BOLD, 40));
         laHeadline.setHorizontalAlignment((JLabel.CENTER));
         container.add(laHeadline, BorderLayout.NORTH);
@@ -86,6 +86,7 @@ public class Menu extends JFrame {
 
 
         container.add(panel, BorderLayout.CENTER);
+        setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -144,7 +145,17 @@ public class Menu extends JFrame {
     }
 
     public void onStartGame(){
-        System.out.println("Start Game!!!");
+        JFrame frame = new JFrame();
+        frame.setSize(685, 710);
+        Board board = new Board(1, 2, 700, 700);
+        board.setVisible(true);
+        frame.getContentPane().add(board);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        board.printSquares();
+
+        ContextMenu contextMenu = new ContextMenu();
     }
 
     //Pop Up with heading

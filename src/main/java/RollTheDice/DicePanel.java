@@ -46,6 +46,7 @@ public class DicePanel extends JDialog{
 
         add(panel);
 
+        setResizable(false);
         setVisible(true);
     }
 
