@@ -1,9 +1,56 @@
 package Board;
 
+import Player.Player;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class Adjustments {
     JFrame frame = new JFrame();
+    Player player = new Player();
+
+    String[] colours;
+    Object[] colors;
+    private int noPlayers;
+    private int chosenBudget;
+
+    public Object[] getColors() {
+        return colors;
+    }
+
+    public void setColors(Object[] colors) {
+        this.colors = colors;
+    }
+
+    public int getChosenBudget() {
+        return chosenBudget;
+    }
+
+    public void setChosenBudget(int chosenBudget) {
+        this.chosenBudget = chosenBudget;
+    }
+
+    private static Adjustments theInstance = null;
+
+    public static Adjustments getInstance() {
+        if (theInstance == null) {
+            theInstance = new Adjustments();
+        }
+
+        return theInstance;
+    }
+
+    private Adjustments () {
+
+    }
+
+    public int getNoPlayers() {
+        return noPlayers;
+    }
+
+    public void setNoPlayers(int noPlayers) {
+        this.noPlayers = noPlayers;
+    }
 
     public int setNumberOfPlayers() {
         Object[] playerPossibilities = {"2", "3", "4", "5", "6"};
@@ -13,14 +60,14 @@ public class Adjustments {
                     JOptionPane.PLAIN_MESSAGE, null, playerPossibilities, "Players");
             //setNumberOfPlayers();
         }
+        setNoPlayers(Integer.parseInt(s));
         return Integer.parseInt(s);
     }
 
-    public String[] setColourForCone(int noPlayers) {
-        //Array für die Farben, die ausgewählt wurden
-        String[] colours = new String[noPlayers];
+    public Object[] setColourForCone(int noPlayers) {
         //Array für mögliche Farben
-        String[] possibleColours = {"Blue", "Red", "Pink", "Yellow", "Black", "Green", "Orange"};
+        String[] possibleColours = {"Blue", "Red", "Pink", "Yellow", "Violet", "Green", "Orange"};
+        String[] colours = new String[noPlayers];
 
         //für jeden Spieler auswählen
         for (int i = 0; i < noPlayers; i++) {
@@ -43,7 +90,24 @@ public class Adjustments {
             }
         }
 
-        return colours;
+        //auf color array --> nur Farbnamen
+        //jetzt werden die Farben so gespeichert, wie sie im Code gebraucht werden
+        Object[] colors = new Object[noPlayers];
+        for (int i = 0; i < colours.length; i++) {
+            switch (colours[i]) {
+                case "Blue" -> colors[i] = new Color(99, 187, 225);
+                case "Red" -> colors[i] = new Color(227, 31, 31);
+                case "Pink" -> colors[i] = new Color(255, 60, 145);
+                case "Yellow" -> colors[i] = new Color(252, 205, 60);
+                case "Violet" -> colors[i] = new Color(125, 41, 204);
+                case "Green" -> colors[i] = new Color(34, 173, 30);
+                case "Orange" -> colors[i] = new Color(255, 90, 39);
+                default -> colors[i] = new Color(0, 0, 0);
+            }
+        }
+
+        setColors(colors);
+        return colors;
     }
 
     public int setBudget() {
@@ -51,40 +115,31 @@ public class Adjustments {
         String[] possibleBudgets = {"Standard (1,500 €)", "Beginner (2,000 €)", "Advanced (1,000 €)"};
         String s = null;
         //Budget auswählen
-        while( s == null){
-             s = (String)JOptionPane.showInputDialog(frame, "Choose the Budget for every player ", "Set Budget",
+        while (s == null) {
+            s = (String) JOptionPane.showInputDialog(frame, "Choose the Budget for every player ", "Set Budget",
                     JOptionPane.PLAIN_MESSAGE, null, possibleBudgets, "");
         }
         String[] budgetString = s.split(" ");
 
         //ausgewähltes Budget in Zahl umwandeln
         int budget;
-        switch(budgetString[0]) {
+        switch (budgetString[0]) {
             case "Standard" -> budget = 1500;
             case "Beginner" -> budget = 2000;
             case "Advanced" -> budget = 1000;
             default -> budget = 0;
         }
 
+        setChosenBudget(budget);
         return budget;
     }
 
-
     public static void main(String[] args) {
         Adjustments adjustments = new Adjustments();
-
         int noPlayers = adjustments.setNumberOfPlayers();
-        System.out.println("Number of Players: " + noPlayers);
-
-        System.out.println("-------------------------------");
-
-        String[] colours = adjustments.setColourForCone(noPlayers);
-        for (int i = 0; i < colours.length; i++) {
-            System.out.println("Player " + (i+1) + ": " + colours[i]);
+        Object[] colors = adjustments.setColourForCone(noPlayers);
+        for (int i = 0; i < colors.length; i++) {
+            System.out.println("Player " + i + ": " + colors[i]);
         }
-
-        System.out.println("-------------------------------");
-
-        System.out.println("Budget: " + adjustments.setBudget());
     }
 }

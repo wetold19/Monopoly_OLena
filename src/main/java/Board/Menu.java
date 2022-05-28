@@ -1,5 +1,7 @@
 package Board;
 
+import Player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Menu extends JFrame {
-    Adjustments adjustments = new Adjustments();
+    Player player = new Player();
+    Adjustments adjustments = Adjustments.getInstance();
 
     Container container = this.getContentPane();
     JLabel laHeadline = new JLabel();
@@ -109,27 +112,19 @@ public class Menu extends JFrame {
     }
 
     public void onDefineAdjustments(ActionEvent e){
-        //Number of players:
-        numberOfPlayers = adjustments.setNumberOfPlayers();
+        //number of player
+        int noPlayers = adjustments.setNumberOfPlayers();
         //choose colours for each player
-        colours = adjustments.setColourForCone(numberOfPlayers);
+        Object[] colors = adjustments.setColourForCone(noPlayers);
+
+        for (int i = 0; i < colors.length; i++) {
+            System.out.println("Player " + i + ": " + colors[i]);
+        }
         //choose starting budget (Standart, advances, beginner)
         budget = adjustments.setBudget();
-        //Ausgabe der Werte
-        System.out.println("Number of Players: " + numberOfPlayers);
-        System.out.println("-------------------------------");
-
-        for (int i = 0; i < colours.length; i++) {
-            System.out.println("Player " + (i+1) + ": " + colours[i]);
-        }
-        System.out.println("-------------------------------");
-
-        System.out.println("Budget: " + budget);
 
         //Start Game enablen
         btStartGame.setEnabled(true);
-
-
     }
 
     public int setDuration() {
