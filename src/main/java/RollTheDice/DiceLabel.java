@@ -36,7 +36,6 @@ public class DiceLabel extends JLabel implements Runnable{
         //Segmente zeichnen
         g2.scale(getWidth() / 11.0, getHeight() / 18.0);
 
-        //{"Blue", "Red", "Pink", "Yellow", "Black", "Green", "Orange"};
         for (int i : segmentsForValue[value]) {
             g2.setPaint(new Color(85, 179, 34));
             g2.fillPolygon(getXCoordsOfSegment(i), getYCoordsOfSegment(i), getXCoordsOfSegment(i).length);

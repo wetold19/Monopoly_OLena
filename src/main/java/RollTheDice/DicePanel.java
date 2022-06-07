@@ -24,10 +24,12 @@ public class DicePanel extends JDialog{
 
         //First Dice
         diceLabels[0] = new DiceLabel();
+        diceLabels[0].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK));
         panelNorth.add(diceLabels[0]);
 
         //Second Dice
         diceLabels[1] = new DiceLabel();
+        diceLabels[1].setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.BLACK));
         panelNorth.add(diceLabels[1]);
 
         //Start und Stop Buttons

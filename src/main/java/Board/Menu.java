@@ -142,7 +142,8 @@ public class Menu extends JFrame {
     public void onStartGame(){
         JFrame frame = new JFrame();
         frame.setSize(685, 710);
-        Board board = new Board(1, 2, 700, 700);
+        //Board board = new Board(1, 2, 700, 700);
+        Board board = Board.getInstance(1, 2, 700, 700);
         board.setVisible(true);
         frame.getContentPane().add(board);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -151,6 +152,7 @@ public class Menu extends JFrame {
         board.printSquares();
 
         ContextMenu contextMenu = new ContextMenu();
+        BudgetDisplay budgetDisplay = new BudgetDisplay();
     }
 
     //Pop Up with heading
