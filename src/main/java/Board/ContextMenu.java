@@ -6,25 +6,32 @@ import RollTheDice.RollTheDice;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContextMenu extends JDialog {
     Adjustments adjustments = Adjustments.getInstance();
+    Board board = Board.getInstance(1, 2, 700, 700);
     private int currentPlayer = 1;
     private String currentPremise = "Graz";
     private int lastPlayer = adjustments.getNoPlayers();
     private Object[] colors = adjustments.getColors();
     private int chosenBudget = adjustments.getChosenBudget();
-
-    private List<Player> players;
+    //Liste für alle Mitspieler
+    private List<Player> players = new ArrayList<>();
+    //alle Felder
+    private ArrayList<Field> allSquares = board.getAllSquares();
+    private ArrayList<Field> unbuyableSquares = board.getUnbuyableSquares();
 
 
     public ContextMenu() {
         initComponents();
 
-        //for (int i = 0; i < lastPlayer; i++) {
-            //players.add(new Player(i+1, 0, chosenBudget, (Color) colors[i]));
-        //}
+        for (int i = 0; i < lastPlayer; i++) {
+            players.add(new Player(i+1, 0, chosenBudget, (Color) colors[i]));
+        }
+
+        printList();
     }
 
     private JLabel infoText = new JLabel("Player: " + currentPlayer);
@@ -120,6 +127,16 @@ public class ContextMenu extends JDialog {
         setVisible(true);
     }
 
+    public void printList() {
+        for (int i = 0; i < allSquares.size(); i++) {
+            System.out.println(allSquares.get(i));
+        }
+        System.out.println("-----------------");
+        for (int i = 0; i < unbuyableSquares.size(); i++) {
+            System.out.println(unbuyableSquares.get(i));
+        }
+    }
+
     private void onFinished(ActionEvent actionEvent) {
         System.out.println("Finished: next Player");
         if (currentPlayer == lastPlayer) {
@@ -162,13 +179,28 @@ public class ContextMenu extends JDialog {
 
     private void onViewDetails(ActionEvent actionEvent) {
         System.out.println("Details...");
+        int playerPosition = players.get(currentPlayer-1).getPosition();
+        //int playerPosition = 6;
+        System.out.println("Feld: " + allSquares.get(playerPosition).getName());
+
+        if (unbuyableSquares.contains(allSquares.get(playerPosition))) {
+            System.out.println("Unbuyable Field!");
+        }else {
+            System.out.println("Purchasing Price: " + allSquares.get(playerPosition).getPurchasePrice() +
+                    "\nRent Price: " + allSquares.get(playerPosition).getRentPrice());
+        }
     }
 
     private void onRollTheDice(ActionEvent actionEvent) {
         RollTheDice rollTheDice = new RollTheDice();
         rollTheDice.printDiceNumbers();
-        rollTheDice.setNewPositionOfPlayer();
         System.out.println("Is Pasch: " + rollTheDice.isPasch());
+
+        //neue Position von Spieler setzen
+        int diceNumber = rollTheDice.getDiceNumber();
+        int newPosition = players.get(currentPlayer-1).getPosition() + diceNumber;
+        players.get(currentPlayer-1).setPosition(newPosition);
+        System.out.println("Player " + currentPlayer + ": " + players.get(currentPlayer-1).getPosition());
 
         btRollDice.setEnabled(false);
         btViewDetails.setEnabled(true);

@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RollTheDice {
-    Player player = new Player();
     private int[] diceNumbers;
 
     public RollTheDice() {
@@ -14,10 +13,10 @@ public class RollTheDice {
         this.diceNumbers = panel.getDiceNumbers();
     }
 
-    public void setNewPositionOfPlayer () {
+    public int getDiceNumber () {
         int diceNumber = diceNumbers[0] + diceNumbers[1];
         System.out.println("DiceNumber: " + diceNumber);
-        player.setPlayerPosition(diceNumber);
+        return diceNumber;
     }
 
     public boolean isPasch() {
@@ -31,7 +30,7 @@ public class RollTheDice {
     public static void main(String[] args) {
         RollTheDice rollTheDice = new RollTheDice();
         rollTheDice.printDiceNumbers();
-        rollTheDice.setNewPositionOfPlayer();
+        rollTheDice.getDiceNumber();
         System.out.println("Is Pasch: " + rollTheDice.isPasch());
     }
 }

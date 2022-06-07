@@ -1,12 +1,19 @@
 package Board;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class Board extends JPanel {
+    private static Board theInstance = null;
     private ArrayList<Field> allSquares = new ArrayList<Field>(); // array with all fields like "Wien"
     private ArrayList<Field> unbuyableSquares = new ArrayList<Field>(); // squares like "Go", "Gefängnis" etc...
 
@@ -18,17 +25,26 @@ public class Board extends JPanel {
         return allSquares;
     }
 
+    public static Board getInstance(int xCoord, int yCoord, int width, int height) {
+        if (theInstance == null) {
+            theInstance = new Board(xCoord, yCoord, width, height);
+        }
+
+        return theInstance;
+    }
+
     public Field getSquareAtIndex(int position) {
         return allSquares.get(position);
     }
 
 
-    public Board(int xCoord, int yCoord, int width, int height) {
+    private Board(int xCoord, int yCoord, int width, int height) {
         setBorder(new LineBorder(new Color(0, 0, 0)));
         setBounds(xCoord, yCoord, 612, 612);
         this.setLayout(null);
         initializeSquares();
     }
+
 
     private void initializeSquares() {
         String[] squareNames = {
@@ -56,150 +72,116 @@ public class Board extends JPanel {
 
 
         // squares on the top
-        Field field00 = new Field(6, 6, 110, 110, squareNames[0], 135);
-        field00.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field00 = new Field(0, 0, 6, 6, 100, 100, squareNames[0], 135);
+        field00.setBorder(BorderFactory.createMatteBorder(2, 2, 1, 1, Color.BLACK));
         this.add(field00);
         allSquares.add(field00);
         unbuyableSquares.add(field00);
 
-        Field field01 = new Field(116, 6, 110, 110, squareNames[1], 180);
-        field01.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field01 = new Field(300, 30, 106, 6, 100, 100, squareNames[1], 180);
+        field01.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field01);
         allSquares.add(field01);
 
-        Field field02 = new Field(226, 6, 110, 110, squareNames[2], 180);
-        field02.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field02 = new Field(350, 40, 206, 6, 100, 100, squareNames[2], 180);
+        field02.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field02);
         allSquares.add(field02);
-        unbuyableSquares.add(field02);
 
-        Field field03 = new Field(336, 6, 110, 110, squareNames[3], 180);
-        field03.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field03 = new Field(0, 0, 306, 6, 100, 100, squareNames[3], 180);
+        field03.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field03);
         allSquares.add(field03);
+        unbuyableSquares.add(field03);
 
-        Field field04 = new Field(446, 6, 110, 110, squareNames[4], 180);
-        field04.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field04 = new Field(200, 20, 406, 6, 100, 100, squareNames[4], 180);
+        field04.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field04);
         allSquares.add(field04);
 
-        Field field05 = new Field(556, 6, 110, 110, squareNames[5], -135);
-        field05.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field05 = new Field(0, 0, 506, 6, 100, 100, squareNames[5], -135);
+        field05.setBorder(BorderFactory.createMatteBorder(2, 1, 1, 2, Color.BLACK));
         this.add(field05);
         allSquares.add(field05);
         unbuyableSquares.add(field05);
 
         // squares on the right
-        Field field06 = new Field(556, 116, 110, 110, squareNames[6], -90);
-        field06.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field06 = new Field(150, 15, 506, 106, 100, 100, squareNames[6], -90);
+        field06.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field06);
         allSquares.add(field06);
 
-        Field field07 = new Field(556, 226, 110, 110, squareNames[7], -90);
-        field07.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field07 = new Field(380, 80, 506, 206, 100, 100, squareNames[7], -90);
+        field07.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field07);
         allSquares.add(field07);
-        unbuyableSquares.add(field07);
+        //unbuyableSquares.add(field07);
 
-        Field field08 = new Field(556, 336, 110, 110, squareNames[8], -90);
-        field08.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field08 = new Field(250, 30, 506, 306, 100, 100, squareNames[8], -90);
+        field08.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field08);
         allSquares.add(field08);
 
-        Field field09 = new Field(556, 446, 110, 110, squareNames[9], -90);
-        field09.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field09 = new Field(220, 20, 506, 406, 100, 100, squareNames[9], -90);
+        field09.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field09);
         allSquares.add(field09);
 
-        Field field10 = new Field(556, 556, 110, 110, squareNames[10], -45);
-        field10.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field10 = new Field(0, 0,506, 506, 100, 100, squareNames[10], -45);
+        field10.setBorder(BorderFactory.createMatteBorder(1, 1, 2, 2, Color.BLACK));
         this.add(field10);
         allSquares.add(field10);
         unbuyableSquares.add(field10);
 
         // squares on the bottom
-        Field field11 = new Field(446, 556, 110, 110, squareNames[11], 0);
-        field11.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field11 = new Field(300, 30, 406, 506, 100, 100, squareNames[11], 0);
+        field11.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field11);
         allSquares.add(field11);
 
-        Field field12 = new Field(336, 556, 110, 110, squareNames[12], 0);
-        field12.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field12 = new Field(0, 0, 306, 506, 100, 100, squareNames[12], 0);
+        field12.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field12);
         allSquares.add(field12);
         unbuyableSquares.add(field12);
 
-        Field field13 = new Field(226, 556, 110, 110, squareNames[13], 0);
-        field13.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field13 = new Field(280, 35, 206, 506, 100, 100, squareNames[13], 0);
+        field13.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field13);
         allSquares.add(field13);
 
-        Field field14 = new Field(116, 556, 110, 110, squareNames[14], 0);
-        field14.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field14 = new Field(210, 20, 106, 506, 100, 100, squareNames[14], 0);
+        field14.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field14);
         allSquares.add(field14);
 
-        Field field15 = new Field(6, 556, 110, 110, squareNames[15], 45);
-        field15.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field15 = new Field(0, 0, 6, 506, 100, 100, squareNames[15], 45);
+        field15.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 1, Color.BLACK));
         this.add(field15);
         allSquares.add(field15);
         unbuyableSquares.add(field15);
 
         // squares on the left
-        Field field16 = new Field(6, 446, 110, 110, squareNames[16], 90);
-        field16.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field16 = new Field(330, 40, 6, 406, 100, 100, squareNames[16], 90);
+        field16.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field16);
         allSquares.add(field16);
 
-        Field field17 = new Field(6, 336, 110, 110, squareNames[17], 90);
-        field17.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field17 = new Field(400, 80, 6, 306, 100, 100, squareNames[17], 90);
+        field17.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field17);
         allSquares.add(field17);
 
-        Field field18 = new Field(6, 226, 110, 110, squareNames[18], 90);
-        field18.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field18 = new Field(220, 20, 6, 206, 100, 100, squareNames[18], 90);
+        field18.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field18);
         allSquares.add(field18);
-        unbuyableSquares.add(field18);
+        //unbuyableSquares.add(field18);
 
-        Field field19 = new Field(6, 116, 110, 110, squareNames[19], 90);
-        field19.setBorder(new LineBorder(Color.BLACK, 2));
+        Field field19 = new Field(250, 30, 6, 106, 100, 100, squareNames[19], 90);
+        field19.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field19);
         allSquares.add(field19);
-
-        // setting prices
-        /*square01.setPrice(100);
-        square03.setPrice(100);
-        field04.setPrice(120);
-
-        square06.setPrice(140);
-        field08.setPrice(140);
-        field09.setPrice(160);
-
-        square11.setPrice(180);
-        field13.setPrice(180);
-        field14.setPrice(200);
-
-        field16.setPrice(300);
-        field17.setPrice(300);
-        square19.setPrice(320);
-
-        // setting rent prcies
-        square01.setRentPrice(6);
-        square03.setRentPrice(6);
-        field04.setRentPrice(8);
-
-        square06.setRentPrice(10);
-        field08.setRentPrice(10);
-        field09.setRentPrice(12);
-
-        square11.setRentPrice(14);
-        field13.setRentPrice(14);
-        field14.setRentPrice(16);
-
-        field16.setRentPrice(26);
-        field17.setRentPrice(26);
-        square19.setRentPrice(28);*/
 
 
         JLabel lblMonopoly = new JLabel("Monopoly OLena") {
@@ -210,7 +192,7 @@ public class Board extends JPanel {
                 AffineTransform aT = g2.getTransform();
                 Shape oldshape = g2.getClip();
                 double x = getWidth() / 2.0;
-                double y = getHeight() / 2.0;
+                double y = getHeight() / 2.0+50;
                 aT.rotate(Math.toRadians(-35), x, y);
                 g2.setTransform(aT);
                 g2.setClip(oldshape);
