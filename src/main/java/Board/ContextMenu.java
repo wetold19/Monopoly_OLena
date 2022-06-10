@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ContextMenu extends JDialog {
     Adjustments adjustments = Adjustments.getInstance();
+    //ShowConeBoard showConeBoard = ShowConeBoard.getInstance();
     Board board = Board.getInstance(1, 2, 700, 700);
     private int currentPlayer = 1;
     private String currentPremise = "Graz";
@@ -200,7 +201,11 @@ public class ContextMenu extends JDialog {
         int diceNumber = rollTheDice.getDiceNumber();
         int newPosition = players.get(currentPlayer-1).getPosition() + diceNumber;
         players.get(currentPlayer-1).setPosition(newPosition);
+        //showConeBoard.movePlayer(players.get(currentPlayer-1), 3);
+        //players.get(currentPlayer-1).moveSquares(newPosition, currentPlayer);
+        //System.out.println("player moved");
         System.out.println("Player " + currentPlayer + ": " + players.get(currentPlayer-1).getPosition());
+
 
         btRollDice.setEnabled(false);
         btViewDetails.setEnabled(true);

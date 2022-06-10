@@ -8,16 +8,20 @@ import java.util.ArrayList;
 
 public class ShowConeBoard extends JFrame {
     private JPanel contentIncluder;
+    private static ShowConeBoard instance;
+    Adjustments adjustments = Adjustments.getInstance();
     ArrayList<Player> players = new ArrayList<>();
     Board gameBoard;
-    Player player1;
-    Player player2;
-    Player player3;
-    Player player4;
-    Player player5;
-    Player player6;
+    Player player;
+    Object colors[] = adjustments.getColors();
 
-    public ShowConeBoard() {
+    public static ShowConeBoard getInstance(){
+        if(instance == null){
+            instance = new ShowConeBoard();
+        }
+        return instance;
+    }
+    private ShowConeBoard() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(652,672);
         setResizable(false);
@@ -34,37 +38,16 @@ public class ShowConeBoard extends JFrame {
         gameBoard.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         layeredPane.add(gameBoard, new Integer(0));
 
-        player1 = new Player(1, 1, 1, Color.RED);
-        players.add(player1);
-        player1.moveSquares( 0, player1.getPlayerNumber());
-        layeredPane.add(player1, new Integer(1));
-
-        player2 = new Player(2, 2, 2, Color.BLUE);
-        players.add(player2);
-        player2.moveSquares(0, player2.getPlayerNumber());
-        layeredPane.add(player2, new Integer(1));
-
-        player3 = new Player(3, 2, 2, Color.PINK);
-        players.add(player3);
-        player3.moveSquares(0, player3.getPlayerNumber());
-        layeredPane.add(player3, new Integer(1));
-
-        player4 = new Player(4, 2, 2, Color.CYAN);
-        players.add(player4);
-        player4.moveSquares(0, player4.getPlayerNumber());
-        layeredPane.add(player4, new Integer(1));
-
-        player5 = new Player(5, 2, 2, Color.YELLOW);
-        players.add(player5);
-        player5.moveSquares( 0, player5.getPlayerNumber());
-        layeredPane.add(player5, new Integer(1));
-
-        player6 = new Player( 6, 2, 2, Color.MAGENTA);
-        players.add(player6);
-        player6.moveSquares( 12, player6.getPlayerNumber());
-        layeredPane.add(player6, new Integer(1));
-
+        for(int i = 1; i < adjustments.getNoPlayers()+1; i++){
+            player = new Player(i, 1, adjustments.getChosenBudget(), (Color) colors[i-1]);
+            player.moveSquares( 0, player.getPlayerNumber());
+            layeredPane.add(player, new Integer(1));
+            players.add(i-1, player);
+        }
     }
+    //public void movePlayer(Player player, int totalDices){
+        //player.moveSquares( totalDices, player.getPlayerNumber());
+    //}
 
     public static void main(String[] args) {
 
