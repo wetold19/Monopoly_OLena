@@ -128,6 +128,53 @@ public class ContextMenu extends JDialog {
         setVisible(true);
     }
 
+    public void initComponentsViewDetails() {
+        JDialog jDialog = new JDialog();
+        jDialog.setTitle("Premise Details");
+        jDialog.setSize(400, 200);
+        jDialog.setModal(false);
+        jDialog.setLocation(1300, 165);
+        jDialog.setBackground(new Color(46, 213, 192));
+
+        int playerPosition = players.get(currentPlayer-1).getPosition();
+
+        //Gesamtpanel
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(3, 1));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        String fieldName = allSquares.get(playerPosition).getName();
+        JLabel fieldLabel = new JLabel();
+        fieldLabel.setText(fieldName + ":");
+        fieldLabel.setForeground(new Color(27, 56, 148));
+        fieldLabel.setFont(new Font("Curier New", Font.BOLD, 20));
+        fieldLabel.setBorder(BorderFactory.createLineBorder(new Color(27, 56, 148), 2));
+        fieldLabel.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(fieldLabel, BorderLayout.NORTH);
+
+        if (unbuyableSquares.contains(allSquares.get(playerPosition))) {
+            JLabel unbuyableFieldLabel = new JLabel();
+            unbuyableFieldLabel.setText("Unbuyable Field!");
+            panel.add(unbuyableFieldLabel);
+        }else {
+            JLabel purchaseLabel = new JLabel();
+            int purchasePrice = allSquares.get(playerPosition).getPurchasePrice();
+            purchaseLabel.setText("Purchasing Price: " + purchasePrice + " €");
+            //purchaseLabel.setHorizontalAlignment(JLabel.CENTER);
+            panel.add(purchaseLabel);
+
+            JLabel rentLabel = new JLabel();
+            int rentPrice = allSquares.get(playerPosition).getRentPrice();
+            rentLabel.setText("Rent Price: " + rentPrice + " €");
+            //rentLabel.setHorizontalAlignment(JLabel.CENTER);
+            panel.add(rentLabel);
+        }
+
+        jDialog.add(panel);
+        jDialog.setResizable(false);
+        jDialog.setVisible(true);
+    }
+
     public void printList() {
         for (int i = 0; i < allSquares.size(); i++) {
             System.out.println(allSquares.get(i));
@@ -179,17 +226,7 @@ public class ContextMenu extends JDialog {
     }
 
     private void onViewDetails(ActionEvent actionEvent) {
-        System.out.println("Details...");
-        int playerPosition = players.get(currentPlayer-1).getPosition();
-        //int playerPosition = 6;
-        System.out.println("Feld: " + allSquares.get(playerPosition).getName());
-
-        if (unbuyableSquares.contains(allSquares.get(playerPosition))) {
-            System.out.println("Unbuyable Field!");
-        }else {
-            System.out.println("Purchasing Price: " + allSquares.get(playerPosition).getPurchasePrice() +
-                    "\nRent Price: " + allSquares.get(playerPosition).getRentPrice());
-        }
+        initComponentsViewDetails();
     }
 
     private void onRollTheDice(ActionEvent actionEvent) {
