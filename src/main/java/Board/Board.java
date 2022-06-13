@@ -13,8 +13,8 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class Board extends JPanel {
     private static Board theInstance = null;
-    private ArrayList<Field> allSquares = new ArrayList<Field>(); // array with all fields like "Wien"
-    private ArrayList<Field> unbuyableSquares = new ArrayList<Field>(); // squares like "Go", "Gefängnis" etc...
+    private ArrayList<Field> allSquares = new ArrayList<>(); // array with all fields like "Wien"
+    private ArrayList<Field> unbuyableSquares = new ArrayList<>(); // squares like "Go", "Gefängnis" etc...
 
     public ArrayList<Field> getUnbuyableSquares() {
         return unbuyableSquares;
@@ -52,7 +52,7 @@ public class Board extends JPanel {
                 "Berlin",
                 "Chance",
                 "Amsterdam",
-                "Gefängnis",
+                "Prison",
                 "Barcelona",
                 "Paris",
                 "London",
@@ -62,7 +62,7 @@ public class Board extends JPanel {
                 "Chance",
                 "Rome",
                 "Singapore",
-                "Ins Gefängnis",
+                "Go to Prison",
                 "Tokyo",
                 "Dubai",
                 "Seoul",

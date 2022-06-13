@@ -1,7 +1,6 @@
 package Board;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

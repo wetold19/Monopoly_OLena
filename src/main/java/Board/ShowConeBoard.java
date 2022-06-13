@@ -7,13 +7,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ShowConeBoard extends JFrame {
-    private JPanel contentIncluder;
+    private final JPanel contentIncluder;
     private static ShowConeBoard instance;
     Adjustments adjustments = Adjustments.getInstance();
     ArrayList<Player> players = new ArrayList<>();
     Board gameBoard;
     Player player;
-    Object colors[] = adjustments.getColors();
+    Object[] colors = adjustments.getColors();
 
     public static ShowConeBoard getInstance(){
         if(instance == null){

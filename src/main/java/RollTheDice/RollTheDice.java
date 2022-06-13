@@ -1,10 +1,5 @@
 package RollTheDice;
 
-import Player.Player;
-
-import javax.swing.*;
-import java.awt.*;
-
 public class RollTheDice {
     private int[] diceNumbers;
 
