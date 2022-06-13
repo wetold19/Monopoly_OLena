@@ -8,7 +8,6 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -156,7 +155,7 @@ public class Board extends JPanel {
         allSquares.add(field14);
 
         Field field15 = new Field(0, 0, 6, 506, 100, 100, squareNames[15], 45);
-        field15.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 1, Color.BLACK));
+        field15.setBorder(BorderFactory.createMatteBorder(1, 2, 2, 1, Color.BLACK));
         this.add(field15);
         allSquares.add(field15);
         unbuyableSquares.add(field15);

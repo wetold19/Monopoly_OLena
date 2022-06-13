@@ -10,21 +10,22 @@ import java.awt.geom.AffineTransform;
 
 @Data
 public class Field extends JPanel {
-    //private int number;
+
+    int number;
     private String name;
-    int position;
-    private int purchasePrice;
-    private int rentPrice;
-    //zusätzliche Preise für Häuser --> später
-    int totalSquares = 0;
     JLabel nameLabel;
+    static int totalSquares = 0;
+    private int price;
+    private int rentPrice;
+    private int purchasePrice;
 
     public Field(int purchasePrice, int rentPrice, int xCoord, int yCoord, int width, int height, String labelString, int rotationDegrees) {
         this.purchasePrice = purchasePrice;
         this.rentPrice = rentPrice;
 
-        position = totalSquares;
+        number = totalSquares;
         totalSquares++;
+        setBorder(new LineBorder(new Color(0, 0, 0)));
         setBounds(xCoord, yCoord, width, height);
         name = labelString;
         this.setLayout(null);
@@ -75,42 +76,26 @@ public class Field extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if(this.position == 1 || this.position == 2 || this.position == 4) {
+        if(this.number == 1 || this.number == 2 || this.number == 4) {
             g.drawRect(0, this.getHeight()-20, this.getWidth(), 20);
-            g.setColor(Color.BLUE);
+            g.setColor(new Color(126, 239, 255));
             g.fillRect(0, this.getHeight()-20, this.getWidth(), 20);
         }
-        if(this.position == 6 || this.position == 7 || this.position == 8 || this.position == 9) {
+        if(this.number == 6 || this.number == 7 || this.number == 8 || this.number == 9) {
             g.drawRect(0, 0, 20, this.getHeight());
             g.setColor(Color.PINK);
             g.fillRect(0, 0, 20, this.getHeight());
         }
-        if(this.position == 11 || this.position == 13 || this.position == 14) {
+        if(this.number == 11 || this.number == 13 || this.number == 14) {
             g.drawRect(0, 0, this.getWidth(), 20);
             g.setColor(Color.ORANGE);
             g.fillRect(0, 0, this.getWidth(), 20);
         }
-        if(this.position == 16 || this.position == 17 || this.position == 18|| this.position == 19) {
+        if(this.number == 16 || this.number == 17 || this.number == 18|| this.number == 19) {
             g.drawRect(this.getWidth()-20, 0, 20, this.getHeight());
-            g.setColor(Color.GREEN);
+            g.setColor(new Color(215, 181, 216));
             g.fillRect(this.getWidth()-20, 0, 20, this.getHeight());
         }
-
-    }
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setSize(300, 400);
-        Field field = new Field(0, 0, 300, 400, frame.getWidth()+60, 350, "Wien", 90);
-        //Board.Field field = new Board.Field(300, 400, 200, 350, "Wien", -90);
-        //Board.Field field = new Board.Field(300, 400, 280, 140, "Wien", 0);
-        //Board.Field field = new Board.Field(400, 300, 280, frame.getHeight()+150, "Wien", 180);
-
-        //Board.Field field = new Board.Field();
-        field.setPosition(13);
-        frame.getContentPane().add(field);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
 
     }
 
