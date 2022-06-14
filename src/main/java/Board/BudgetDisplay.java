@@ -1,7 +1,6 @@
 package Board;
 
 import javax.swing.*;
-import javax.xml.stream.Location;
 import java.awt.*;
 
 public class BudgetDisplay extends JDialog {

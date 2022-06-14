@@ -234,4 +234,3 @@ public class Board extends JPanel {
         System.out.println(board.getSquareAtIndex(0).getName());
     }
 }
-

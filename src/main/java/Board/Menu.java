@@ -53,7 +53,7 @@ public class Menu extends JFrame {
         btInstructions.setBackground(Color.pink);
         btInstructions.setFont(new Font("Curier New", Font.PLAIN, 20));
         btInstructions.setBorder(BorderFactory.createLineBorder(new Color(142, 13, 18, 255), 3));
-            //Show game insturctions
+        //Show game insturctions
         btInstructions.addActionListener(e -> onShowInstructions());
 
         btAdjustments.setText("  Adjustments  ");
