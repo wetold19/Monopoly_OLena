@@ -127,6 +127,7 @@ public class ShowConeBoard extends JFrame {
         panelMiddle.add(btPayRent);
         panelMiddle.setBackground(Color.getColor(String.valueOf(rightPanel)));
         rightPanel.add(panelMiddle);
+        System.out.println("Hello Lena");
 
         //Finished
         JPanel finishedPanel = new JPanel();
