@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContextMenu extends JDialog {
-    Adjustments adjustments = Adjustments.getInstance();
+    /*Adjustments adjustments = Adjustments.getInstance();
     //ShowConeBoard showConeBoard = ShowConeBoard.getInstance();
     Board board = Board.getInstance(1, 2, 700, 700);
     private int currentPlayer = 1;
@@ -124,7 +124,7 @@ public class ContextMenu extends JDialog {
         //Gesamtes Panel hinzufügen
         add(panel);
 
-        setResizable(false);
+        //setResizable(false);
         setVisible(true);
     }
 
@@ -143,7 +143,7 @@ public class ContextMenu extends JDialog {
         panel.setLayout(new GridLayout(3, 1));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        String fieldName = allSquares.get(playerPosition).getName();
+        String fieldName = allSquares.get(playerPosition-1).getName();
         JLabel fieldLabel = new JLabel();
         fieldLabel.setText(fieldName + ":");
         fieldLabel.setForeground(new Color(27, 56, 148));
@@ -229,14 +229,14 @@ public class ContextMenu extends JDialog {
         initComponentsViewDetails();
     }
 
-    private void onRollTheDice(ActionEvent actionEvent) {
+    public void onRollTheDice(ActionEvent actionEvent) {
         RollTheDice rollTheDice = new RollTheDice();
         rollTheDice.printDiceNumbers();
         System.out.println("Is Pasch: " + rollTheDice.isPasch());
 
         //neue Position von Spieler setzen
         int diceNumber = rollTheDice.getDiceNumber();
-        int newPosition = players.get(currentPlayer-1).getPosition() + diceNumber;
+        int newPosition = players.get(currentPlayer-1).getPosition() + diceNumber - 1;
         players.get(currentPlayer-1).setPosition(newPosition);
         //showConeBoard.movePlayer(players.get(currentPlayer-1), 3);
         //players.get(currentPlayer-1).moveSquares(newPosition, currentPlayer);
@@ -256,5 +256,5 @@ public class ContextMenu extends JDialog {
         if (isBuy()) {
             btBuy.setEnabled(true);
         }
-    }
+    }*/
 }

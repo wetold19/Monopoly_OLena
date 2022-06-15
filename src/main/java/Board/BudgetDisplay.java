@@ -14,7 +14,7 @@ public class BudgetDisplay extends JDialog {
         setTitle("Display");
         setSize(100, 200);
         setModal(false);
-        setLocation(480, 165);
+        setLocation(230, 180);
 
         int noPlayers = adjustments.getNoPlayers();
         int budget = adjustments.getChosenBudget();

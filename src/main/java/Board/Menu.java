@@ -148,10 +148,10 @@ public class Menu extends JFrame {
         frame.getContentPane().add(board);*/
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
 
-        ContextMenu contextMenu = new ContextMenu();
         BudgetDisplay budgetDisplay = new BudgetDisplay();
+
+        frame.setVisible(true);
     }
 
     //Pop Up with heading
