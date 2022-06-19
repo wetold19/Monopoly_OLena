@@ -18,6 +18,8 @@ public class ShowConeBoard extends JFrame {
     Board gameBoard;
     Player player;
     Object[] colors = adjustments.getColors();
+    JLayeredPane layeredPane = new JLayeredPane();
+    BudgetDisplay budgetDisplay;
 
     //ShowConeBoard showConeBoard = ShowConeBoard.getInstance();
     Board board = Board.getInstance(1, 2, 700, 700);
@@ -46,6 +48,9 @@ public class ShowConeBoard extends JFrame {
         return instance;
     }
     private ShowConeBoard() {
+        //Show Budgets of all players
+        budgetDisplay = new BudgetDisplay();
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1150,672);
         //setResizable(false);
@@ -55,7 +60,6 @@ public class ShowConeBoard extends JFrame {
         setContentPane(contentIncluder);
         contentIncluder.setLayout(null);
 
-        JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setBounds(6, 6, 800, 800);
         contentIncluder.add(layeredPane);
 
@@ -149,9 +153,6 @@ public class ShowConeBoard extends JFrame {
 
         contentIncluder.add(rightPanel);
     }
-    //public void movePlayer(Player player, int totalDices){
-        //player.moveSquares( totalDices, player.getPlayerNumber());
-    //}
 
     //Methods for Context Menu
 
@@ -265,13 +266,31 @@ public class ShowConeBoard extends JFrame {
 
         //neue Position von Spieler setzen
         int diceNumber = rollTheDice.getDiceNumber();
-        int newPosition = players.get(currentPlayer-1).getPosition() + diceNumber;
-        players.get(currentPlayer-1).setPosition(newPosition);
-        //showConeBoard.movePlayer(players.get(currentPlayer-1), 3);
-        //players.get(currentPlayer-1).moveSquares(newPosition, currentPlayer);
-        //System.out.println("player moved");
-        System.out.println("Player " + currentPlayer + ": " + players.get(currentPlayer-1).getPosition());
+        int newPosition = (players.get(currentPlayer-1).getPosition() + diceNumber);
 
+        //When Player at/beyond the Go field then...
+        if(newPosition >= 20){
+            System.out.println("Spieler " + players.get(currentPlayer-1).getPlayerNumber() + " über Los");
+            //...Change the position to a new round
+            newPosition = newPosition - 20;
+            //...Add 200€ to the buget of the player
+            players.get(currentPlayer-1).setBudget(players.get(currentPlayer-1).getBudget() + 200);
+            movePlayer(players.get(currentPlayer-1), diceNumber);
+            //Update the display message for the budgets
+            budgetDisplay.updateDisplay(players.get(currentPlayer-1).getPlayerNumber(), players.get(currentPlayer-1).getBudget());
+            System.out.println("New budget: " + players.get(currentPlayer-1).getBudget());
+        }
+        else{
+            movePlayer(players.get(currentPlayer-1), diceNumber);
+        }
+        //If player is on field 15 (go to prison) move the player to field 5 (prison)
+        if(newPosition == 15){
+            newPosition = 5;
+            movePlayer(players.get(currentPlayer-1), newPosition);
+        }
+        //Set the players position
+        players.get(currentPlayer-1).setPosition(newPosition);
+        System.out.println("Player" + currentPlayer + " : " + players.get(currentPlayer-1).getPosition());
 
         btRollDice.setEnabled(false);
         btViewDetails.setEnabled(true);
@@ -285,6 +304,13 @@ public class ShowConeBoard extends JFrame {
         if (isBuy()) {
             btBuy.setEnabled(true);
         }
+        //Avoids visual bugs on the board
+        layeredPane.remove(gameBoard);
+        layeredPane.add(gameBoard, new Integer(0));
+    }
+
+    public void movePlayer(Player player, int totalDices){
+        player.moveSquares( totalDices, player.getPlayerNumber());
     }
 
     public static void main(String[] args) {

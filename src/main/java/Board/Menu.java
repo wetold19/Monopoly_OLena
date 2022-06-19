@@ -149,8 +149,6 @@ public class Menu extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
-        BudgetDisplay budgetDisplay = new BudgetDisplay();
-
         frame.setVisible(true);
     }
 

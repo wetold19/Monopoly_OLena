@@ -99,9 +99,6 @@ public class Player extends JPanel{
 
 
     public void moveSquares(int dicesTotal, int playerNumber) {
-        if(currentSquareNumber + dicesTotal > 19) {
-            budget+=200;
-        }
         int targetSquare = (currentSquareNumber + dicesTotal) % 20;
         currentSquareNumber = targetSquare;
 
@@ -113,8 +110,6 @@ public class Player extends JPanel{
             case 5 -> this.setLocation(xLocationsOfPlayer5[targetSquare], yLocationsOfPlayer5[targetSquare]);
             case 6 -> this.setLocation(xLocationsOfPlayer6[targetSquare], yLocationsOfPlayer6[targetSquare]);
         }
-
-        //TODO: Check if field is free or if it belongs to another player
     }
 
     /*public Player(int playerNumber, int playerPosition, int budget, Color coneColor) {
