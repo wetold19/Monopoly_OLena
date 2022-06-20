@@ -53,7 +53,7 @@ public class ShowConeBoard extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1150,672);
-        //setResizable(false);
+        setResizable(false);
         //setLocationRelativeTo(null);
         setLocation(1200, 500);
         contentIncluder = new JPanel();
@@ -268,7 +268,7 @@ public class ShowConeBoard extends JFrame {
         int diceNumber = rollTheDice.getDiceNumber();
         int newPosition = (players.get(currentPlayer-1).getPosition() + diceNumber);
 
-        //When Player at/beyond the Go field then...
+        //When Player is at/beyond the Go field then...
         if(newPosition >= 20){
             System.out.println("Spieler " + players.get(currentPlayer-1).getPlayerNumber() + " über Los");
             //...Change the position to a new round
@@ -280,14 +280,16 @@ public class ShowConeBoard extends JFrame {
             budgetDisplay.updateDisplay(players.get(currentPlayer-1).getPlayerNumber(), players.get(currentPlayer-1).getBudget());
             System.out.println("New budget: " + players.get(currentPlayer-1).getBudget());
         }
+        //If player is on field 15 (go to prison) move the player to field 5 (prison)
+        else if (newPosition == 15){
+            newPosition = 5;
+            System.out.println("Player " +  players.get(currentPlayer-1).getPlayerNumber() + " goes to Prison");
+            movePlayer(players.get(currentPlayer-1), diceNumber + 10);
+        }
         else{
             movePlayer(players.get(currentPlayer-1), diceNumber);
         }
-        //If player is on field 15 (go to prison) move the player to field 5 (prison)
-        if(newPosition == 15){
-            newPosition = 5;
-            movePlayer(players.get(currentPlayer-1), newPosition);
-        }
+
         //Set the players position
         players.get(currentPlayer-1).setPosition(newPosition);
         System.out.println("Player" + currentPlayer + " : " + players.get(currentPlayer-1).getPosition());
@@ -307,10 +309,12 @@ public class ShowConeBoard extends JFrame {
         //Avoids visual bugs on the board
         layeredPane.remove(gameBoard);
         layeredPane.add(gameBoard, new Integer(0));
+        System.out.println();
     }
 
     public void movePlayer(Player player, int totalDices){
         player.moveSquares( totalDices, player.getPlayerNumber());
+        System.out.println("Player " + player.getPlayerNumber() + " moves Fields: " + totalDices);
     }
 
     public static void main(String[] args) {
