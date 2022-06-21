@@ -300,6 +300,7 @@ public class ShowConeBoard extends JFrame {
             }
         }
 
+        btPayRent.setEnabled(false);
         btFinished.setEnabled(true);
         //ToDo: nachschauen und Preis bezahlen lassen --> mit MessageDialog zeigen wie viel
     }
@@ -309,7 +310,7 @@ public class ShowConeBoard extends JFrame {
 
         for (Player player : players) {
             List<Integer> ownedPremises = new ArrayList<>(player.getOwnedPremises());
-            if (ownedPremises.contains(currentPosition)) {
+            if (player != players.get(currentPlayer-1) && ownedPremises.contains(currentPosition)) {
                 return true;
             }
         }
@@ -373,24 +374,41 @@ public class ShowConeBoard extends JFrame {
 
         //neue Position von Spieler setzen
         int diceNumber = rollTheDice.getDiceNumber();
-        diceNumber = 1;
         int newPosition = players.get(currentPlayer-1).getPosition() + diceNumber;
 
-        //When Player is at/beyond the Go field then...
-        if(newPosition >= 20){
+        //When Player is beyond the Go field --> budget + 150
+        if(newPosition > 20){
             //System.out.println("Spieler " + players.get(currentPlayer-1).getPlayerNumber() + " über Los");
             //...Change the position to a new round
             newPosition = newPosition - 20;
-            //...Add 200€ to the buget of the player
-            players.get(currentPlayer-1).setBudget(players.get(currentPlayer-1).getBudget() + 200);
+            //...Add 150 to the buget of the player
+            players.get(currentPlayer-1).setBudget(players.get(currentPlayer-1).getBudget() + 150);
             movePlayer(players.get(currentPlayer-1), diceNumber);
             //Update the display message for the budgets
             budgetDisplay.updateDisplay(players.get(currentPlayer-1).getPlayerNumber(), players.get(currentPlayer-1).getBudget());
             //System.out.println("New budget: " + players.get(currentPlayer-1).getBudget());
+
+            //When Player is beyond the Go field then --> budget + 200
+        }else if(newPosition == 20) {
+            newPosition = newPosition - 20;
+            players.get(currentPlayer-1).setBudget(players.get(currentPlayer-1).getBudget() + 200);
+            movePlayer(players.get(currentPlayer-1), diceNumber);
+            budgetDisplay.updateDisplay(players.get(currentPlayer-1).getPlayerNumber(), players.get(currentPlayer-1).getBudget());
         }
         //If player is on field 15 (go to prison) move the player to field 5 (prison)
         else if (newPosition == 15){
             newPosition = 5;
+            //Wenn in Gefängnis --> kein Geld wenn über GO --> gleich 150 abziehen
+            int budget = players.get(currentPlayer-1).getBudget();
+            int newBudget = budget - 150;
+            players.get(currentPlayer-1).setBudget(newBudget);
+            budgetDisplay.updateDisplay(players.get(currentPlayer-1).getPlayerNumber(), players.get(currentPlayer-1).getBudget());
+
+            if (newBudget <= 0) {
+                int winner = getWinnerOfGame();
+                gameOver.initComponents(currentPlayer, winner);
+            }
+
             System.out.println("Player " +  players.get(currentPlayer-1).getPlayerNumber() + " goes to Prison");
             movePlayer(players.get(currentPlayer-1), diceNumber + 10);
         }

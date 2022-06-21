@@ -77,12 +77,12 @@ public class Board extends JPanel {
         allSquares.add(field00);
         unbuyableSquares.add(field00);
 
-        Field field01 = new Field(300, 30, 106, 6, 100, 100, squareNames[1], 180);
+        Field field01 = new Field(400, 140, 106, 6, 100, 100, squareNames[1], 180);
         field01.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field01);
         allSquares.add(field01);
 
-        Field field02 = new Field(350, 40, 206, 6, 100, 100, squareNames[2], 180);
+        Field field02 = new Field(350, 115, 206, 6, 100, 100, squareNames[2], 180);
         field02.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field02);
         allSquares.add(field02);
@@ -93,7 +93,7 @@ public class Board extends JPanel {
         allSquares.add(field03);
         unbuyableSquares.add(field03);
 
-        Field field04 = new Field(200, 20, 406, 6, 100, 100, squareNames[4], 180);
+        Field field04 = new Field(200, 100, 406, 6, 100, 100, squareNames[4], 180);
         field04.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field04);
         allSquares.add(field04);
@@ -105,23 +105,23 @@ public class Board extends JPanel {
         unbuyableSquares.add(field05);
 
         // squares on the right
-        Field field06 = new Field(150, 15, 506, 106, 100, 100, squareNames[6], -90);
+        Field field06 = new Field(250, 110, 506, 106, 100, 100, squareNames[6], -90);
         field06.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field06);
         allSquares.add(field06);
 
-        Field field07 = new Field(380, 80, 506, 206, 100, 100, squareNames[7], -90);
+        Field field07 = new Field(480, 145, 506, 206, 100, 100, squareNames[7], -90);
         field07.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field07);
         allSquares.add(field07);
         //unbuyableSquares.add(field07);
 
-        Field field08 = new Field(250, 30, 506, 306, 100, 100, squareNames[8], -90);
+        Field field08 = new Field(350, 125, 506, 306, 100, 100, squareNames[8], -90);
         field08.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field08);
         allSquares.add(field08);
 
-        Field field09 = new Field(220, 20, 506, 406, 100, 100, squareNames[9], -90);
+        Field field09 = new Field(220, 115, 506, 406, 100, 100, squareNames[9], -90);
         field09.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field09);
         allSquares.add(field09);
@@ -133,7 +133,7 @@ public class Board extends JPanel {
         unbuyableSquares.add(field10);
 
         // squares on the bottom
-        Field field11 = new Field(300, 30, 406, 506, 100, 100, squareNames[11], 0);
+        Field field11 = new Field(300, 130, 406, 506, 100, 100, squareNames[11], 0);
         field11.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field11);
         allSquares.add(field11);
@@ -144,12 +144,12 @@ public class Board extends JPanel {
         allSquares.add(field12);
         unbuyableSquares.add(field12);
 
-        Field field13 = new Field(280, 35, 206, 506, 100, 100, squareNames[13], 0);
+        Field field13 = new Field(280, 110, 206, 506, 100, 100, squareNames[13], 0);
         field13.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field13);
         allSquares.add(field13);
 
-        Field field14 = new Field(210, 20, 106, 506, 100, 100, squareNames[14], 0);
+        Field field14 = new Field(310, 150, 106, 506, 100, 100, squareNames[14], 0);
         field14.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 1, Color.BLACK));
         this.add(field14);
         allSquares.add(field14);
@@ -161,23 +161,23 @@ public class Board extends JPanel {
         unbuyableSquares.add(field15);
 
         // squares on the left
-        Field field16 = new Field(330, 40, 6, 406, 100, 100, squareNames[16], 90);
+        Field field16 = new Field(280, 125, 6, 406, 100, 100, squareNames[16], 90);
         field16.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field16);
         allSquares.add(field16);
 
-        Field field17 = new Field(400, 80, 6, 306, 100, 100, squareNames[17], 90);
+        Field field17 = new Field(300, 150, 6, 306, 100, 100, squareNames[17], 90);
         field17.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field17);
         allSquares.add(field17);
 
-        Field field18 = new Field(220, 20, 6, 206, 100, 100, squareNames[18], 90);
+        Field field18 = new Field(320, 130, 6, 206, 100, 100, squareNames[18], 90);
         field18.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field18);
         allSquares.add(field18);
         //unbuyableSquares.add(field18);
 
-        Field field19 = new Field(250, 30, 6, 106, 100, 100, squareNames[19], 90);
+        Field field19 = new Field(150, 110, 6, 106, 100, 100, squareNames[19], 90);
         field19.setBorder(BorderFactory.createMatteBorder(1, 2, 1, 2, Color.BLACK));
         this.add(field19);
         allSquares.add(field19);
