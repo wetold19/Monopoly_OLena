@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,18 +17,18 @@ public class Player extends JPanel{
     private int budget;
     private Color coneColor;
     //Positionen der Grundstücke speichern --> nicht Namen --> mit Array, wo alle Felder, dann Namen bekommen
-    //und Anzahl der Häuser speichern
-    private int[][] ownedPremises;
+    private List<Integer> ownedPremises;
 
     JLabel lblPlayerNumber;
     private int currentSquareNumber = 0; // where player is currently located on (0 - 19). initially zero
 
 
     //Constructor
-    public Player(int playerNumber, int position, int budget, Color color) {
+    public Player(int playerNumber, int position, int budget, Color color, List<Integer> ownedPremises) {
         this.playerNumber = playerNumber;
         this.position = position;
         this.budget = budget;
+        this.ownedPremises = ownedPremises;
         this.setBackground(color);
         lblPlayerNumber = new JLabel(""+playerNumber);
         lblPlayerNumber.setFont(new Font("Lucida Grande", Font.BOLD, 15));

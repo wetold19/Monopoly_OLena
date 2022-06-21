@@ -75,4 +75,12 @@ public class BudgetDisplay extends JDialog {
 
         setVisible(true);
     }
+
+    public int[] getAllBudgets() {
+        return allBudgets;
+    }
+
+    public void setAllBudgets(int[] allBudgets) {
+        this.allBudgets = allBudgets;
+    }
 }

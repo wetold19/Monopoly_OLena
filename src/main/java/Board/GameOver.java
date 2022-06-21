@@ -22,8 +22,13 @@ public class GameOver extends JDialog {
         gameOver.setHorizontalAlignment(JLabel.CENTER);
 
         JLabel winLose = new JLabel();
-        winLose.setText("Player " + loser + ": You lose!    " +
-                "Player " + winner + ": You win!");
+        if (winner == -1) {
+            winLose.setText("Player " + loser + ": You lose!    " +
+                    "Winner Undecided!");
+        }else {
+            winLose.setText("Player " + loser + ": You lose!    " +
+                    "Player " + winner + ": You win!");
+        }
         winLose.setFont(new Font("Arial", Font.PLAIN, 18));
         winLose.setForeground(new Color(255, 255, 255));
         winLose.setHorizontalAlignment(JLabel.CENTER);
