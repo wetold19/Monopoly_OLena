@@ -20,6 +20,7 @@ public class ShowConeBoard extends JFrame {
     Object[] colors = adjustments.getColors();
     JLayeredPane layeredPane = new JLayeredPane();
     BudgetDisplay budgetDisplay;
+    ActionPopUp popUp;
 
     //ShowConeBoard showConeBoard = ShowConeBoard.getInstance();
     Board board = Board.getInstance(1, 2, 700, 700);
@@ -411,6 +412,47 @@ public class ShowConeBoard extends JFrame {
 
             System.out.println("Player " +  players.get(currentPlayer-1).getPlayerNumber() + " goes to Prison");
             movePlayer(players.get(currentPlayer-1), diceNumber + 10);
+        }
+        else if(newPosition == 3 || newPosition == 12){
+            popUp = new ActionPopUp();
+            //TODO: Programm the actions on the different Action cards
+            switch (popUp.getAction()){ //Action == Index of Actions Array in ActionPopUp
+                case 0 -> {
+                    System.out.println("Action card 0");
+                }
+                case 1 -> {
+                    System.out.println("Action card 1");
+                    if(newPosition == 3){
+                        movePlayer(players.get(currentPlayer-1), diceNumber + 17);
+                    }else{
+                        movePlayer(players.get(currentPlayer-1), diceNumber + 8);
+                    }
+                    players.get(currentPlayer-1).setBudget(players.get(currentPlayer-1).getBudget() + 200);
+                    budgetDisplay.updateDisplay(players.get(currentPlayer-1).getPlayerNumber(), players.get(currentPlayer-1).getBudget());
+                    newPosition = 0;
+                }
+                case 2 -> {
+                    System.out.println("Action card 2");
+                }
+                case 3 -> {
+                    System.out.println("Action card 3");
+                }
+                case 4 -> {
+                    System.out.println("Action card 4");
+                }
+                case 5 -> {
+                    System.out.println("Action card 5");
+                }
+                case 6 -> {
+                    System.out.println("Action card 6");
+                }
+                case 7 -> {
+                    System.out.println("Action card 7");
+                }
+                case 8 -> {
+                    System.out.println("Action card 8");
+                }
+            }
         }
         else{
             movePlayer(players.get(currentPlayer-1), diceNumber);
