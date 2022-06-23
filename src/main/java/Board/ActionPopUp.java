@@ -9,7 +9,7 @@ import java.util.Random;
 @Getter
 public class ActionPopUp extends JDialog {
     JPanel panel = new JPanel();
-    private String[] actions = new String[] {"You have won 100€ at a Crossword puzzle Competition.", " Go to the GO field.",
+    private String[] actions = new String[] {"You won 100€ at a puzzle Competition.", "Go to the GO field.",
             "Go to the field before GO.", "The bank pays you 50€.", "Plant flowers on your premises for 200€.",
             "Penalty for driving too fast 300€.", "Go to jail.", "Pay each player 50€.", "You buy a hamburger, pay 30€."};
     Random random = new Random();
@@ -33,7 +33,7 @@ public class ActionPopUp extends JDialog {
             heading.setHorizontalAlignment(JLabel.CENTER);
         panel.add(heading);
         action = random.nextInt(8);
-        action = 1;
+        action = 7;
             JLabel actionText = new JLabel(actions[action]);
             actionText.setFont(new Font("Curier New", Font.PLAIN, 15));
             actionText.setHorizontalAlignment(JLabel.CENTER);
