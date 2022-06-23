@@ -537,8 +537,6 @@ public class ShowConeBoard extends JFrame {
                 }
             }
         }
-
-        //TODO check if someplayer is below 0€
         else{
             movePlayer(players.get(currentPlayer-1), diceNumber);
         }
