@@ -248,6 +248,7 @@ public class ShowConeBoard extends JFrame {
         System.out.println("Pay Rent");
         int currentPremise = players.get(currentPlayer-1).getPosition();
         int budget = players.get(currentPlayer-1).getBudget();
+        //budget = 10;
         int rentPrice = allSquares.get(currentPremise).getRentPrice();
 
         if (budget < rentPrice) {
@@ -350,7 +351,7 @@ public class ShowConeBoard extends JFrame {
 
         //neue Position von Spieler setzen
         int diceNumber = rollTheDice.getDiceNumber();
-        //diceNumber = 22;
+        //diceNumber = 2;
         int newPosition = players.get(currentPlayer-1).getPosition() + diceNumber;
 
         //When Player is beyond the Go field --> budget + 50
