@@ -105,7 +105,7 @@ public class DiceLabel extends JLabel implements Runnable{
     @Override
     public void run() {
         int min = 1;
-        int max = 6;
+        int max = 3;
         int randomNr;
 
         while (!Thread.interrupted()) {
