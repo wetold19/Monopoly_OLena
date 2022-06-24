@@ -28,6 +28,7 @@ public class ShowConeBoard extends JFrame {
     private String currentPremise = "";
     private int lastPlayer = adjustments.getNoPlayers();
     private int chosenBudget = adjustments.getChosenBudget();
+    private int actionPrice;
     //alle Felder
     private ArrayList<Field> allSquares = board.getAllSquares();
     private ArrayList<Field> unbuyableSquares = board.getUnbuyableSquares();
@@ -351,7 +352,7 @@ public class ShowConeBoard extends JFrame {
 
         //neue Position von Spieler setzen
         int diceNumber = rollTheDice.getDiceNumber();
-        //diceNumber = 2;
+        diceNumber = 3;
         int newPosition = players.get(currentPlayer-1).getPosition() + diceNumber;
 
         //When Player is beyond the Go field --> budget + 50
@@ -437,30 +438,116 @@ public class ShowConeBoard extends JFrame {
         switch (popUp.getAction()){ //Action == Index of Actions Array in ActionPopUp
             case 0 -> {
                 System.out.println("Action card 0");
+                players.get(currentPlayer-1).setBudget(players.get(currentPlayer-1).getBudget() + 100);
+                budgetDisplay.updateDisplay(players.get(currentPlayer-1).getPlayerNumber(), players.get(currentPlayer-1).getBudget());
             }
             case 1 -> {
                 System.out.println("Action card 1");
+                int budget = players.get(currentPlayer - 1).getBudget();
+                actionPrice = 250;
+
+                if (budget < actionPrice) {
+                    System.out.println("Budget is too low!!!!!!");
+                    gameOver.initComponents(currentPlayer);
+                } else {
+                    int newBudget = budget - actionPrice;
+                    players.get(currentPlayer - 1).setBudget(newBudget);
+                    budgetDisplay.updateDisplay(players.get(currentPlayer - 1).getPlayerNumber(), players.get(currentPlayer - 1).getBudget());
+
+                }
             }
             case 2 -> {
-                System.out.println("Action card 2");
+                System.out.println("Action card 2"); //Every player pays you 50
+                int budget = players.get(currentPlayer - 1).getBudget();
+                actionPrice = 50;
+                int newBudget;
+                for(int i = 0; i < players.size(); i++){
+                    if (players.get(i).getBudget() < actionPrice) {
+                        System.out.println("Budget is too low!!!!!!");
+                        gameOver.initComponents(i);
+                    }
+                    //System.out.println(  players.get(currentPlayer - 1).getPlayerNumber() + " - " + players.get(i).getPlayerNumber());
+                    budget = players.get(currentPlayer - 1).getBudget();
+                    newBudget = budget + actionPrice;
+                    players.get(currentPlayer - 1).setBudget(newBudget);
+                    players.get(i).setBudget(players.get(i).getBudget()-actionPrice);
+                    budgetDisplay.updateDisplay(players.get(currentPlayer - 1).getPlayerNumber(), players.get(currentPlayer - 1).getBudget());
+                    budgetDisplay.updateDisplay(players.get(i).getPlayerNumber(), players.get(i).getBudget());
+                }
             }
             case 3 -> {
                 System.out.println("Action card 3");
+                players.get(currentPlayer-1).setBudget(players.get(currentPlayer-1).getBudget() + 50);
+                budgetDisplay.updateDisplay(players.get(currentPlayer-1).getPlayerNumber(), players.get(currentPlayer-1).getBudget());
             }
             case 4 -> {
-                System.out.println("Action card 4");
+                System.out.println("Action card 4"); //200
+                int budget = players.get(currentPlayer - 1).getBudget();
+                actionPrice = 200;
+
+                if (budget < actionPrice) {
+                    System.out.println("Budget is too low!!!!!!");
+                    gameOver.initComponents(currentPlayer);
+                } else {
+                    int newBudget = budget - actionPrice;
+                    players.get(currentPlayer - 1).setBudget(newBudget);
+                    budgetDisplay.updateDisplay(players.get(currentPlayer - 1).getPlayerNumber(), players.get(currentPlayer - 1).getBudget());
+
+                }
             }
             case 5 -> {
-                System.out.println("Action card 5");
+                System.out.println("Action card 5"); //300
+                int budget = players.get(currentPlayer - 1).getBudget();
+                actionPrice = 300;
+
+                if (budget < actionPrice) {
+                    System.out.println("Budget is too low!!!!!!");
+                    gameOver.initComponents(currentPlayer);
+                } else {
+                    int newBudget = budget - actionPrice;
+                    players.get(currentPlayer - 1).setBudget(newBudget);
+                    budgetDisplay.updateDisplay(players.get(currentPlayer - 1).getPlayerNumber(), players.get(currentPlayer - 1).getBudget());
+
+                }
             }
             case 6 -> {
                 System.out.println("Action card 6");
             }
             case 7 -> {
-                System.out.println("Action card 7");
+                System.out.println("Action card 7"); //Pay every player 50
+                int budget = players.get(currentPlayer - 1).getBudget();
+                actionPrice = 50;
+                int newBudget;
+
+                if (budget < actionPrice*(players.size()-1)) {
+                    System.out.println("Budget is too low!!!!!!");
+                    gameOver.initComponents(currentPlayer-1);
+                } else {
+                    for(int i = 0; i < players.size(); i++){
+                        //System.out.println(  players.get(currentPlayer - 1).getPlayerNumber() + " - " + players.get(i).getPlayerNumber());
+                        budget = players.get(currentPlayer - 1).getBudget();
+                        newBudget = budget - actionPrice;
+                        players.get(currentPlayer - 1).setBudget(newBudget);
+                        players.get(i).setBudget(players.get(i).getBudget()+actionPrice);
+                        budgetDisplay.updateDisplay(players.get(currentPlayer - 1).getPlayerNumber(), players.get(currentPlayer - 1).getBudget());
+                        budgetDisplay.updateDisplay(players.get(i).getPlayerNumber(), players.get(i).getBudget());
+                    }
+                }
             }
             case 8 -> {
-                System.out.println("Action card 8");
+                System.out.println("Action card 8"); //30
+                int budget = players.get(currentPlayer - 1).getBudget();
+                actionPrice = 30;
+
+                if (budget < actionPrice) {
+                    System.out.println("Budget is too low!!!!!!");
+                    gameOver.initComponents(currentPlayer);
+                } else {
+                    int newBudget = budget - actionPrice;
+                    players.get(currentPlayer - 1).setBudget(newBudget);
+                    budgetDisplay.updateDisplay(players.get(currentPlayer - 1).getPlayerNumber(), players.get(currentPlayer - 1).getBudget());
+
+                }
             }
         }
     }

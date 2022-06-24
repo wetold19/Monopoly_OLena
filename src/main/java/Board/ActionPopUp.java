@@ -32,8 +32,7 @@ public class ActionPopUp extends JDialog {
             heading.setBorder(BorderFactory.createLineBorder(new Color(111, 226, 44), 2));
             heading.setHorizontalAlignment(JLabel.CENTER);
         panel.add(heading);
-        action = random.nextInt(8);
-        action = 7;
+        action = 2;
             JLabel actionText = new JLabel(actions[action]);
             actionText.setFont(new Font("Curier New", Font.PLAIN, 15));
             actionText.setHorizontalAlignment(JLabel.CENTER);
