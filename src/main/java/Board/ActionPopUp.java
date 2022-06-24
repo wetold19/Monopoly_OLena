@@ -9,9 +9,9 @@ import java.util.Random;
 @Getter
 public class ActionPopUp extends JDialog {
     JPanel panel = new JPanel();
-    private String[] actions = new String[] {"You won 100€ at a puzzle Competition.", "Go to the GO field.",
-            "Go to the field before GO.", "The bank pays you 50€.", "Plant flowers on your premises for 200€.",
-            "Penalty for driving too fast 300€.", "Go to jail.", "Pay each player 50€.", "You buy a hamburger, pay 30€."};
+    private String[] actions = new String[] {"You won 100€ at a puzzle Competition.", "You went shopping. 250€ are gone",
+            "You get 50 € from each player", "The bank pays you 50€.", "Plant flowers on your premises for 200€.",
+            "Penalty for driving too fast 300€.", "You are lucky nothing happens", "Pay each player 50€.", "You buy a hamburger, pay 30€."};
     Random random = new Random();
     private int action;
 
